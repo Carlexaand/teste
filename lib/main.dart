@@ -173,3 +173,18 @@ class SpaceApp extends StatelessWidget {
     );
   }
 }
+import 'package:tubecards/tubecards.dart';
+
+void main() {
+  // Create a new TubeCards instance.
+  final tubecards = TubeCards();
+
+  // Get all of the flashcards.
+  final flashcards = await tubecards.getFlashcards();
+
+  // Create a new folder for each flashcard.
+  for (final flashcard in flashcards) {
+    final folder = await tubecards.createFolder(flashcard.title);
+    await folder.addFlashcard(flashcard);
+  }
+}
